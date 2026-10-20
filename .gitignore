@@ -1,0 +1,9 @@
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+.coverage
+.pytest_cache/
+backups/
+restore/

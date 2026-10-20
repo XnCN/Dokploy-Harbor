@@ -1,0 +1,25 @@
+# Attach Prometheus to this Compose project's private harbor network.
+# Do not expose proxy:9090 through a public Dokploy domain.
+scrape_configs:
+  - job_name: harbor
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['proxy:9090']
+  - job_name: harbor-core
+    metrics_path: /metrics
+    params:
+      comp: [core]
+    static_configs:
+      - targets: ['proxy:9090']
+  - job_name: harbor-jobservice
+    metrics_path: /metrics
+    params:
+      comp: [jobservice]
+    static_configs:
+      - targets: ['proxy:9090']
+  - job_name: harbor-registry
+    metrics_path: /metrics
+    params:
+      comp: [registry]
+    static_configs:
+      - targets: ['proxy:9090']

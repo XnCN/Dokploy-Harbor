@@ -1,0 +1,11 @@
+groups:
+  - name: harbor-availability
+    rules:
+      - alert: HarborMetricsUnavailable
+        expr: up{job=~"harbor.*"} == 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: Harbor metrics endpoint is unavailable
+          description: Check Harbor service health and private network connectivity.
